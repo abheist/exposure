@@ -5,7 +5,7 @@
   "compilerOptions": {
     "paths": {
       "components": [
-        "./dist/components",
+        "./projects/components/src/public-api.ts",
         "./dist/components"
       ]
     },
@@ -34,12 +34,6 @@
     },
     {
       "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/components/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/components/tsconfig.spec.json"
     },
     {
       "path": "./projects/components/tsconfig.lib.json"
