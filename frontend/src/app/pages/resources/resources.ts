@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import {SectionHeading} from "components";
 
 @Component({
   selector: 'app-resources',
-  imports: [],
+    imports: [
+        SectionHeading
+    ],
   templateUrl: './resources.html',
   styleUrl: './resources.css',
 })

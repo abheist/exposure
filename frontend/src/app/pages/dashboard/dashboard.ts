@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import {SectionHeading} from 'components';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [SectionHeading],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
