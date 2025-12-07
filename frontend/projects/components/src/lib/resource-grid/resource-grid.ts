@@ -1,4 +1,4 @@
-import {Component, signal, viewChild} from '@angular/core';
+import {Component, ElementRef, signal, viewChild} from '@angular/core';
 import {ChevronRight, LucideAngularModule} from "lucide-angular";
 import {NgClass} from '@angular/common';
 
@@ -21,12 +21,20 @@ export class ResourceGrid {
   ChevronRight = ChevronRight;
 
   expandedRows = signal(new Set<string>());
+  scrollContainer = viewChild<ElementRef<HTMLDivElement>>('scrollContainer');
+  monthScroll = viewChild<ElementRef<HTMLDivElement>>('monthScroll');
+  weekScroll = viewChild<ElementRef<HTMLDivElement>>('weekScroll');
 
-  isDragging = signal(false);
-  startX = 0;
-  scrollLeft = 0;
+// Add scroll sync method
+  onScroll(event: Event): void {
+    const scrollLeft = (event.target as HTMLElement).scrollLeft;
 
-  scrollContainer = viewChild
+    const monthEl = this.monthScroll()?.nativeElement;
+    const weekEl = this.weekScroll()?.nativeElement;
+
+    if (monthEl) monthEl.scrollLeft = scrollLeft;
+    if (weekEl) weekEl.scrollLeft = scrollLeft;
+  }
 
   months = [
     {name: 'JAN 2025', weeks: 4},
