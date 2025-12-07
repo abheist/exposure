@@ -84,7 +84,7 @@
               <div class="flex">
                 @for (week of getWeeksArray(month.weeks); track week) {
                   <div
-                    class="w-20 border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a] flex justify-center items-center"
+                    class="w-20 border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a] flex justify-center items-center hover:border hover:border-white/40"
                     [ngClass]="{
                           'bg-[#ecfdf3] text-[#16b364] dark:bg-[#16b364]/20 dark:text-[#22c55e]': resource.weeklyAllocations[week - 1] === 100,
                           'bg-[#fef6ee] text-[#f79009] dark:bg-[#f79009]/20 dark:text-[#fb923c]': resource.weeklyAllocations[week - 1] > 0 && resource.weeklyAllocations[week - 1] < 100,
