@@ -7,7 +7,7 @@ interface Resource {
   name: string;
   role: string;
   imageUrl: string;
-  availability: 'High' | 'Medium' | 'Low' | 'None';
+  // availability: 'High' | 'Medium' | 'Low' | 'None';
   weeklyAllocations: number[];
 }
 
@@ -62,129 +62,271 @@ export class ResourceGrid {
     {name: 'FEB 2025', weeks: 4},
     {name: 'MAR 2025', weeks: 4},
     {name: 'APR 2025', weeks: 4},
-    {name: 'MAY 2025', weeks: 4}
+    {name: 'MAY 2025', weeks: 4},
+    {name: 'JUN 2025', weeks: 4},
+    {name: 'JUL 2025', weeks: 4},
+    {name: 'AUG 2025', weeks: 4},
+    {name: 'SEP 2025', weeks: 4},
+    {name: 'OCT 2025', weeks: 4},
+    {name: 'NOV 2025', weeks: 4},
+    {name: 'DEC 2025', weeks: 4},
   ];
 
   resources = signal<Resource[]>([
+    // Engineers (IDs 1-30)
     {
-      id: '1',
-      name: 'Sarah Johnson',
-      role: 'Full Stack Engineer',
+      id: '1', name: 'Sarah Johnson', role: 'Full Stack Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=1',
-      availability: 'High',
-      weeklyAllocations: [80, 60, 100, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [80, 80, 80, 80, 60, 60, 100, 100, 100, 80, 80, 60, 40, 0, 0, 0, 0, 80, 80, 80, 80, 80, 60, 60, 40, 40, 0, 0, 0, 0, 100, 100, 100, 80, 60, 40, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '2',
-      name: 'Michael Chen',
-      role: 'Backend Engineer',
+      id: '2', name: 'Michael Chen', role: 'Backend Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=2',
-      availability: 'High',
-      weeklyAllocations: [0, 0, 0, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0]
+      weeklyAllocations: [0, 0, 0, 0, 40, 40, 40, 40, 60, 60, 80, 80, 100, 100, 100, 100, 80, 80, 60, 40, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 80, 80, 60, 40, 40, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '3',
-      name: 'Emily Rodriguez',
-      role: 'Frontend Engineer',
+      id: '3', name: 'Emily Rodriguez', role: 'Frontend Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=3',
-      availability: 'Medium',
-      weeklyAllocations: [100, 100, 80, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [100, 100, 100, 80, 80, 60, 60, 40, 0, 0, 0, 0, 0, 100, 100, 100, 100, 80, 80, 60, 60, 40, 40, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '4',
-      name: 'James Williams',
-      role: 'DevOps Engineer',
+      id: '4', name: 'James Williams', role: 'DevOps Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=4',
-      availability: 'High',
-      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 0, 0]
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 40, 40, 60, 60, 80, 80, 80, 60, 60, 40, 40, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 50, 50, 30, 30, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '5',
-      name: 'Maria Garcia',
-      role: 'Tech Lead',
+      id: '5', name: 'Maria Garcia', role: 'Tech Lead',
       imageUrl: 'https://i.pravatar.cc/150?img=5',
-      availability: 'None',
-      weeklyAllocations: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+      weeklyAllocations: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     },
     {
-      id: '6',
-      name: 'David Kim',
-      role: 'UI/UX Designer',
+      id: '6', name: 'David Kim', role: 'UI/UX Designer',
       imageUrl: 'https://i.pravatar.cc/150?img=6',
-      availability: 'Low',
-      weeklyAllocations: [80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 60, 60, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '7',
-      name: 'Lisa Anderson',
-      role: 'Product Manager',
+      id: '7', name: 'Lisa Anderson', role: 'Product Manager',
       imageUrl: 'https://i.pravatar.cc/150?img=7',
-      availability: 'Medium',
-      weeklyAllocations: [60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '8',
-      name: 'Robert Taylor',
-      role: 'Data Engineer',
+      id: '8', name: 'Robert Taylor', role: 'Data Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=8',
-      availability: 'High',
-      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 0, 0]
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 60, 60, 60, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '9',
-      name: 'Jennifer Martinez',
-      role: 'QA Engineer',
+      id: '9', name: 'Jennifer Martinez', role: 'QA Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=9',
-      availability: 'High',
-      weeklyAllocations: [40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [40, 40, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 60, 60, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 60, 60, 60, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '10',
-      name: 'Chris Brown',
-      role: 'Security Engineer',
+      id: '10', name: 'Chris Brown', role: 'Security Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=10',
-      availability: 'Medium',
-      weeklyAllocations: [0, 0, 0, 0, 0, 0, 100, 100, 100, 60, 60, 0, 0, 0, 0]
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 80, 80, 60, 60, 60, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 80, 80, 80, 60, 60, 60, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '11',
-      name: 'Amanda White',
-      role: 'Mobile Developer',
+      id: '11', name: 'Amanda White', role: 'Mobile Developer',
       imageUrl: 'https://i.pravatar.cc/150?img=11',
-      availability: 'Low',
-      weeklyAllocations: [100, 100, 100, 100, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [100, 100, 100, 100, 100, 100, 80, 80, 80, 80, 80, 80, 60, 60, 60, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '12',
-      name: 'Daniel Lee',
-      role: 'System Architect',
+      id: '12', name: 'Daniel Lee', role: 'System Architect',
       imageUrl: 'https://i.pravatar.cc/150?img=12',
-      availability: 'None',
-      weeklyAllocations: [120, 120, 100, 100, 100, 100, 100, 80, 80, 80, 0, 0, 0, 0, 0]
+      weeklyAllocations: [120, 120, 120, 110, 110, 100, 100, 100, 100, 100, 80, 80, 80, 80, 80, 80, 80, 80, 80, 60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '13',
-      name: 'Sophie Wilson',
-      role: 'Scrum Master',
+      id: '13', name: 'Sophie Wilson', role: 'Scrum Master',
       imageUrl: 'https://i.pravatar.cc/150?img=13',
-      availability: 'High',
-      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 40, 40, 40, 40]
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
     },
     {
-      id: '14',
-      name: 'Kevin Davis',
-      role: 'Cloud Engineer',
+      id: '14', name: 'Kevin Davis', role: 'Cloud Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=14',
-      availability: 'Medium',
-      weeklyAllocations: [60, 60, 60, 60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0]
+      weeklyAllocations: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
-      id: '15',
-      name: 'Rachel Green',
-      role: 'Business Analyst',
+      id: '15', name: 'Rachel Green', role: 'Business Analyst',
       imageUrl: 'https://i.pravatar.cc/150?img=15',
-      availability: 'High',
-      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 30]
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+    },
+    {
+      id: '16', name: 'Alex Thompson', role: 'Full Stack Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=16',
+      weeklyAllocations: [100, 100, 80, 80, 60, 60, 40, 40, 0, 0, 0, 0, 100, 100, 100, 100, 80, 80, 60, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '17', name: 'Nina Patel', role: 'Backend Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=17',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 60, 60, 60, 40, 40, 40, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '18', name: 'Marcus Johnson', role: 'Frontend Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=18',
+      weeklyAllocations: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+    },
+    {
+      id: '19', name: 'Olivia Martinez', role: 'DevOps Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=19',
+      weeklyAllocations: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+    },
+    {
+      id: '20', name: 'Ethan Brooks', role: 'Tech Lead',
+      imageUrl: 'https://i.pravatar.cc/150?img=20',
+      weeklyAllocations: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+    },
+    {
+      id: '21', name: 'Isabella Garcia', role: 'UI/UX Designer',
+      imageUrl: 'https://i.pravatar.cc/150?img=21',
+      weeklyAllocations: [0, 0, 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 70, 70, 70, 70, 70, 70, 70, 70, 70, 50, 50, 50, 30, 30, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '22', name: 'Liam Foster', role: 'Product Manager',
+      imageUrl: 'https://i.pravatar.cc/150?img=22',
+      weeklyAllocations: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+    },
+    {
+      id: '23', name: 'Sophia Chang', role: 'Data Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=23',
+      weeklyAllocations: [100, 100, 100, 100, 100, 80, 80, 80, 60, 60, 60, 40, 40, 40, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '24', name: 'Noah Williams', role: 'QA Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=24',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 80, 80, 80, 60, 60, 60, 40, 40, 40, 20, 20, 0, 0, 0]
+    },
+    {
+      id: '25', name: 'Ava Robinson', role: 'Security Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=25',
+      weeklyAllocations: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+    },
+    {
+      id: '26', name: 'Mason Turner', role: 'Mobile Developer',
+      imageUrl: 'https://i.pravatar.cc/150?img=26',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 60, 60, 60, 60, 60, 60, 60, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+    },
+    {
+      id: '27', name: 'Mia Anderson', role: 'System Architect',
+      imageUrl: 'https://i.pravatar.cc/150?img=27',
+      weeklyAllocations: [110, 110, 110, 110, 110, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    },
+    {
+      id: '28', name: 'Lucas Harris', role: 'Scrum Master',
+      imageUrl: 'https://i.pravatar.cc/150?img=28',
+      weeklyAllocations: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+    },
+    {
+      id: '29', name: 'Charlotte King', role: 'Cloud Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=29',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 80, 80, 80, 60, 60, 40, 20]
+    },
+    {
+      id: '30', name: 'Benjamin Scott', role: 'Business Analyst',
+      imageUrl: 'https://i.pravatar.cc/150?img=30',
+      weeklyAllocations: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+    },
+
+    // Designers & PMs (IDs 31-40)
+    {
+      id: '31', name: 'Harper Wright', role: 'UI/UX Designer',
+      imageUrl: 'https://i.pravatar.cc/150?img=31',
+      weeklyAllocations: [100, 100, 100, 80, 80, 60, 60, 40, 40, 20, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 80, 80, 80, 60, 60, 60, 40, 40, 40, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '32', name: 'Elijah Lopez', role: 'Product Manager',
+      imageUrl: 'https://i.pravatar.cc/150?img=32',
+      weeklyAllocations: [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70]
+    },
+    {
+      id: '33', name: 'Amelia Hill', role: 'UI/UX Designer',
+      imageUrl: 'https://i.pravatar.cc/150?img=33',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+    },
+    {
+      id: '34', name: 'James Allen', role: 'Product Manager',
+      imageUrl: 'https://i.pravatar.cc/150?img=34',
+      weeklyAllocations: [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90]
+    },
+    {
+      id: '35', name: 'Evelyn Young', role: 'Business Analyst',
+      imageUrl: 'https://i.pravatar.cc/150?img=35',
+      weeklyAllocations: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+    },
+    {
+      id: '36', name: 'Sebastian Hall', role: 'UI/UX Designer',
+      imageUrl: 'https://i.pravatar.cc/150?img=36',
+      weeklyAllocations: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '37', name: 'Abigail Rivera', role: 'Product Manager',
+      imageUrl: 'https://i.pravatar.cc/150?img=37',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+    },
+    {
+      id: '38', name: 'Logan Campbell', role: 'Business Analyst',
+      imageUrl: 'https://i.pravatar.cc/150?img=38',
+      weeklyAllocations: [25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25]
+    },
+    {
+      id: '39', name: 'Ella Mitchell', role: 'UI/UX Designer',
+      imageUrl: 'https://i.pravatar.cc/150?img=39',
+      weeklyAllocations: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+    },
+    {
+      id: '40', name: 'Henry Perez', role: 'Scrum Master',
+      imageUrl: 'https://i.pravatar.cc/150?img=40',
+      weeklyAllocations: [35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35]
+    },
+
+    // Additional Mixed Roles (IDs 41-50)
+    {
+      id: '41', name: 'Scarlett Roberts', role: 'Full Stack Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=41',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    },
+    {
+      id: '42', name: 'Jack Carter', role: 'Data Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=42',
+      weeklyAllocations: [120, 120, 120, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    },
+    {
+      id: '43', name: 'Victoria Phillips', role: 'Backend Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=43',
+      weeklyAllocations: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    },
+    {
+      id: '44', name: 'Owen Evans', role: 'Frontend Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=44',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80]
+    },
+    {
+      id: '45', name: 'Grace Turner', role: 'DevOps Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=45',
+      weeklyAllocations: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+    },
+    {
+      id: '46', name: 'Carter Collins', role: 'Mobile Developer',
+      imageUrl: 'https://i.pravatar.cc/150?img=46',
+      weeklyAllocations: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 80, 80, 80, 60, 60, 60, 40, 40, 40, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '47', name: 'Penelope Stewart', role: 'QA Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=47',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+    },
+    {
+      id: '48', name: 'Wyatt Morris', role: 'Security Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=48',
+      weeklyAllocations: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    },
+    {
+      id: '49', name: 'Lily Rogers', role: 'Cloud Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=49',
+      weeklyAllocations: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+    },
+    {
+      id: '50', name: 'Nathan Reed', role: 'Tech Lead',
+      imageUrl: 'https://i.pravatar.cc/150?img=50',
+      weeklyAllocations: [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90]
     }
   ]);
 
