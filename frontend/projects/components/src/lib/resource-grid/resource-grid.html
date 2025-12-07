@@ -45,7 +45,7 @@
       @for (resource of resources(); track resource.id) {
         <div class="border-b border-gray-200 dark:border-gray-800">
           <!-- Resource info row -->
-          <div class="flex hover:bg-gray-50 dark:hover:bg-gray-900/50">
+          <div class="flex hover:bg-gray-50 dark:hover:bg-gray-900/50 cursor-default" (click)="toggleExpand(resource.id)">
             <!-- Resource info -->
             <div class="w-[330px] bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 px-6 py-4">
               <div class="flex items-center gap-3">
@@ -112,7 +112,8 @@
               @for (month of months; track month.name) {
                 <div class="flex">
                   @for (week of getWeeksArray(month.weeks); track week) {
-                    <div class="w-20 px-2 py-4 border-r border-gray-200 dark:border-gray-800">
+                    <div
+                      class="min-w-20 border-r border-gray-200 dark:border-gray-800 flex justify-center items-center">
                       <p class="text-xs text-gray-400 dark:text-gray-600">Mock</p>
                     </div>
                   }
