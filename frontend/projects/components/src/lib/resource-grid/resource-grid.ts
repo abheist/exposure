@@ -25,11 +25,15 @@ export class ResourceGrid {
   scrollContainer = viewChild<ElementRef<HTMLDivElement>>('scrollContainer');
   monthScroll = viewChild<ElementRef<HTMLDivElement>>('monthScroll');
   weekScroll = viewChild<ElementRef<HTMLDivElement>>('weekScroll');
-  
+
   // Add this property to track which container is currently scrolling
   private isScrolling = false;
+  private isDragging = false;
+  private startX = 0;
+  private startScrollLeft = 0;
 
-// Update scroll sync to prevent loops
+
+  // Update scroll sync to prevent loops
   onScroll(event: Event): void {
     if (this.isScrolling) return; // Prevent infinite loop
 
@@ -200,19 +204,37 @@ export class ResourceGrid {
     });
   }
 
-  protected onMouseDown($event: MouseEvent) {
-    console.log("onMouseDown", $event);
+  protected onMouseDown(event: MouseEvent) {
+    const container = this.scrollContainer()?.nativeElement;
+    if (!container) return;
+
+    this.isDragging = true;
+    this.startX = event.clientX;
+    this.startScrollLeft = container.scrollLeft;
+
+    event.preventDefault();
   }
 
-  protected onMouseMove($event: MouseEvent) {
-    console.log("onMouseMove", $event);
+  protected onMouseMove(event: MouseEvent) {
+    if (!this.isDragging) return;
+
+    const container = this.scrollContainer()?.nativeElement;
+    if (!container) return;
+
+    event.preventDefault();
+
+    const x = event.clientX;
+    const walk = (x - this.startX);
+
+    container.scrollLeft = this.startScrollLeft - walk;
   }
 
   protected onMouseUp() {
-    console.log("onMouseUp");
+    this.isDragging = false;
   }
 
   protected onMouseLeave() {
-    console.log("onMouseLeave");
+    this.isDragging = false;
   }
+
 }
