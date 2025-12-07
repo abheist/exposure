@@ -25,8 +25,7 @@ export class ResourceGrid {
   scrollContainer = viewChild<ElementRef<HTMLDivElement>>('scrollContainer');
   monthScroll = viewChild<ElementRef<HTMLDivElement>>('monthScroll');
   weekScroll = viewChild<ElementRef<HTMLDivElement>>('weekScroll');
-
-  // Add scroll sync method
+  
   // Add this property to track which container is currently scrolling
   private isScrolling = false;
 
