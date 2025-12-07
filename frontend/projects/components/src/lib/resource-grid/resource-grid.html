@@ -1,54 +1,53 @@
-<div class="h-screen flex flex-col bg-[#fcfcfd] dark:bg-[#0a0a0a]">
-  <div class="flex-1 overflow-auto">
-    <div class="inline-block min-w-full">
+<!-- resource-grid.html -->
+<div class="bg-[#fcfcfd] dark:bg-[#0a0a0a]">
+  <!-- Header - sticky at browser top -->
+  <div class="sticky top-0 z-30 bg-white dark:bg-[#1a1a1a] border-b border-[#e9eaeb] dark:border-[#2a2a2a]">
+    <!-- Month headers -->
+    <div class="overflow-x-auto">
+      <div class="inline-flex min-w-full">
+        <!-- Resource column header -->
+        <div class="w-[330px] px-6 py-4 border-r border-[#e9eaeb] dark:border-[#2a2a2a]">
+          <span class="text-sm font-medium text-[#717680] dark:text-[#a4a7ae]">
+            RESOURCE ({{ resources().length }})
+          </span>
+        </div>
 
-      <div class="sticky top-0 z-20 bg-white dark:bg-[#1a1a1a] border-b border-[#e9eaeb] dark:border-[#2a2a2a]">
-        <div class="flex">
-
-          <div
-            class="sticky left-0 z-10 w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
-            <span class="text-sm font-medium text-[#717680] dark:text-[#a4a7ae]">RESOURCE ({{ resources().length }}
-              )</span>
+        <!-- Month headers -->
+        @for (month of months; track month.name) {
+          <div class="px-6 py-4 text-center border-r border-[#e9eaeb] dark:border-[#2a2a2a]"
+               [style.width.px]="month.weeks * 80">
+            <span class="text-sm font-medium text-[#717680] dark:text-[#a4a7ae]">{{ month.name }}</span>
           </div>
-
-
-          @for (month of months; track month.name) {
-            <div class="flex">
-              <div class="px-6 py-4 text-center border-r border-[#e9eaeb] dark:border-[#2a2a2a]"
-                   [style.width.px]="month.weeks * 80">
-                <span class="text-sm font-medium text-[#717680] dark:text-[#a4a7ae]">{{ month.name }}</span>
-              </div>
-            </div>
-          }
-        </div>
-
-
-        <div class="flex border-t border-[#e9eaeb] dark:border-[#2a2a2a]">
-          <div
-            class="sticky left-0 z-10 w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a]"></div>
-
-          @for (month of months; track month.name) {
-            <div class="flex">
-              @for (week of getWeeksArray(month.weeks); track week) {
-                <div
-                  class="w-20 px-2 py-3 text-center border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a]">
-                  <span class="text-xs font-medium text-[#717680] dark:text-[#a4a7ae]">W{{ week }}</span>
-                </div>
-              }
-            </div>
-          }
-
-        </div>
+        }
       </div>
+    </div>
 
+    <!-- Week headers -->
+    <div class="overflow-x-auto border-t border-[#e9eaeb] dark:border-[#2a2a2a] flex">
+      <div class="inline-flex min-w-full h-full">
+        <div class="min-w-[330px] border-r border-[#e9eaeb] dark:border-[#2a2a2a]"></div>
 
+        @for (month of months; track month.name) {
+          @for (week of getWeeksArray(month.weeks); track week) {
+            <div class="min-w-20 px-2 py-3 text-center border-r border-[#e9eaeb] dark:border-[#2a2a2a]">
+              <span class="text-xs font-medium text-[#717680] dark:text-[#a4a7ae]">W{{ week }}</span>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Scrollable content area -->
+  <div class="overflow-auto">
+    <div class="inline-block min-w-full">
+      <!-- Resource rows -->
       @for (resource of resources(); track resource.id) {
         <div class="border-b border-[#e9eaeb] dark:border-[#2a2a2a]">
-          
+          <!-- Resource info row -->
           <div class="flex hover:bg-[#fcfcfd] dark:hover:bg-[#0f0f0f]">
-            <!-- Resource info - sticky left -->
-            <div
-              class="sticky left-0 z-10 w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
+            <!-- Resource info -->
+            <div class="w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
               <div class="flex items-center gap-3">
                 <button
                   (click)="toggleExpand(resource.id)"
@@ -85,15 +84,15 @@
               <div class="flex">
                 @for (week of getWeeksArray(month.weeks); track week) {
                   <div
-                    class="w-20 px-2 py-4 border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a]">
-                    @if (resource.weeklyAllocations[week - 1]) {
-                      <div
-                        class="text-center text-sm font-medium rounded py-1"
-                        [ngClass]="{
+                    class="w-20 border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a] flex justify-center items-center"
+                    [ngClass]="{
                           'bg-[#ecfdf3] text-[#16b364] dark:bg-[#16b364]/20 dark:text-[#22c55e]': resource.weeklyAllocations[week - 1] === 100,
                           'bg-[#fef6ee] text-[#f79009] dark:bg-[#f79009]/20 dark:text-[#fb923c]': resource.weeklyAllocations[week - 1] > 0 && resource.weeklyAllocations[week - 1] < 100,
                           'bg-[#fef2f2] text-[#dc2626] dark:bg-[#dc2626]/20 dark:text-[#ef4444]': resource.weeklyAllocations[week - 1] > 100
                         }">
+                    @if (resource.weeklyAllocations[week - 1]) {
+                      <div
+                        class="text-sm font-medium">
                         {{ resource.weeklyAllocations[week - 1] }}%
                       </div>
                     }
@@ -107,7 +106,7 @@
           @if (expandedRows().has(resource.id)) {
             <div class="flex bg-[#fcfcfd] dark:bg-[#0f0f0f]">
               <div
-                class="sticky left-0 z-10 w-[330px] bg-[#fcfcfd] dark:bg-[#0f0f0f] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
+                class="w-[330px] bg-[#fcfcfd] dark:bg-[#0f0f0f] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
                 <p class="text-sm text-[#717680] dark:text-[#a4a7ae]">Project details and skills will go here...</p>
               </div>
 

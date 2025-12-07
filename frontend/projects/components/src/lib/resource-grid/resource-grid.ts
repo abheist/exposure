@@ -1,5 +1,5 @@
 import {Component, signal} from '@angular/core';
-import { LucideAngularModule, ChevronRight } from "lucide-angular";
+import {ChevronRight, LucideAngularModule} from "lucide-angular";
 import {NgClass} from '@angular/common';
 
 interface Resource {
@@ -27,7 +27,7 @@ export class ResourceGrid {
     {name: 'FEB 2025', weeks: 4},
     {name: 'MAR 2025', weeks: 4},
     {name: 'APR 2025', weeks: 4},
-    {name: 'APR 2025', weeks: 4}
+    {name: 'MAY 2025', weeks: 4}
   ];
 
   resources = signal<Resource[]>([
@@ -37,7 +37,7 @@ export class ResourceGrid {
       role: 'Full Stack Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=1',
       availability: 'High',
-      weeklyAllocations: []
+      weeklyAllocations: [80, 60, 100, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
       id: '2',
@@ -45,7 +45,7 @@ export class ResourceGrid {
       role: 'Backend Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=2',
       availability: 'High',
-      weeklyAllocations: Array(15).fill(40)
+      weeklyAllocations: [0, 0, 0, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0]
     },
     {
       id: '3',
@@ -53,7 +53,7 @@ export class ResourceGrid {
       role: 'Frontend Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=3',
       availability: 'Medium',
-      weeklyAllocations: []
+      weeklyAllocations: [100, 100, 80, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
       id: '4',
@@ -61,7 +61,7 @@ export class ResourceGrid {
       role: 'DevOps Engineer',
       imageUrl: 'https://i.pravatar.cc/150?img=4',
       availability: 'High',
-      weeklyAllocations: []
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 0, 0]
     },
     {
       id: '5',
@@ -69,7 +69,7 @@ export class ResourceGrid {
       role: 'Tech Lead',
       imageUrl: 'https://i.pravatar.cc/150?img=5',
       availability: 'None',
-      weeklyAllocations: []
+      weeklyAllocations: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     },
     {
       id: '6',
@@ -77,7 +77,79 @@ export class ResourceGrid {
       role: 'UI/UX Designer',
       imageUrl: 'https://i.pravatar.cc/150?img=6',
       availability: 'Low',
-      weeklyAllocations: []
+      weeklyAllocations: [80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '7',
+      name: 'Lisa Anderson',
+      role: 'Product Manager',
+      imageUrl: 'https://i.pravatar.cc/150?img=7',
+      availability: 'Medium',
+      weeklyAllocations: [60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '8',
+      name: 'Robert Taylor',
+      role: 'Data Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=8',
+      availability: 'High',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 0, 0]
+    },
+    {
+      id: '9',
+      name: 'Jennifer Martinez',
+      role: 'QA Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=9',
+      availability: 'High',
+      weeklyAllocations: [40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '10',
+      name: 'Chris Brown',
+      role: 'Security Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=10',
+      availability: 'Medium',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 100, 100, 100, 60, 60, 0, 0, 0, 0]
+    },
+    {
+      id: '11',
+      name: 'Amanda White',
+      role: 'Mobile Developer',
+      imageUrl: 'https://i.pravatar.cc/150?img=11',
+      availability: 'Low',
+      weeklyAllocations: [100, 100, 100, 100, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '12',
+      name: 'Daniel Lee',
+      role: 'System Architect',
+      imageUrl: 'https://i.pravatar.cc/150?img=12',
+      availability: 'None',
+      weeklyAllocations: [120, 120, 100, 100, 100, 100, 100, 80, 80, 80, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '13',
+      name: 'Sophie Wilson',
+      role: 'Scrum Master',
+      imageUrl: 'https://i.pravatar.cc/150?img=13',
+      availability: 'High',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 40, 40, 40, 40]
+    },
+    {
+      id: '14',
+      name: 'Kevin Davis',
+      role: 'Cloud Engineer',
+      imageUrl: 'https://i.pravatar.cc/150?img=14',
+      availability: 'Medium',
+      weeklyAllocations: [60, 60, 60, 60, 60, 60, 60, 60, 60, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      id: '15',
+      name: 'Rachel Green',
+      role: 'Business Analyst',
+      imageUrl: 'https://i.pravatar.cc/150?img=15',
+      availability: 'High',
+      weeklyAllocations: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 30]
     }
   ]);
 
