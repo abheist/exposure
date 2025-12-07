@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import {SectionHeading} from "components";
+import {ButtonToggle, ResourceGrid, SectionHeading} from "components";
 
 @Component({
   selector: 'app-resources',
-    imports: [
-        SectionHeading
-    ],
+  imports: [
+    SectionHeading,
+    ButtonToggle,
+    ResourceGrid
+  ],
   templateUrl: './resources.html',
   styleUrl: './resources.css',
 })

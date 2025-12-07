@@ -1,0 +1,129 @@
+<div class="h-screen flex flex-col bg-[#fcfcfd] dark:bg-[#0a0a0a]">
+  <div class="flex-1 overflow-auto">
+    <div class="inline-block min-w-full">
+
+      <div class="sticky top-0 z-20 bg-white dark:bg-[#1a1a1a] border-b border-[#e9eaeb] dark:border-[#2a2a2a]">
+        <div class="flex">
+
+          <div
+            class="sticky left-0 z-10 w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
+            <span class="text-sm font-medium text-[#717680] dark:text-[#a4a7ae]">RESOURCE ({{ resources().length }}
+              )</span>
+          </div>
+
+
+          @for (month of months; track month.name) {
+            <div class="flex">
+              <div class="px-6 py-4 text-center border-r border-[#e9eaeb] dark:border-[#2a2a2a]"
+                   [style.width.px]="month.weeks * 80">
+                <span class="text-sm font-medium text-[#717680] dark:text-[#a4a7ae]">{{ month.name }}</span>
+              </div>
+            </div>
+          }
+        </div>
+
+
+        <div class="flex border-t border-[#e9eaeb] dark:border-[#2a2a2a]">
+          <div
+            class="sticky left-0 z-10 w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a]"></div>
+
+          @for (month of months; track month.name) {
+            <div class="flex">
+              @for (week of getWeeksArray(month.weeks); track week) {
+                <div
+                  class="w-20 px-2 py-3 text-center border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a]">
+                  <span class="text-xs font-medium text-[#717680] dark:text-[#a4a7ae]">W{{ week }}</span>
+                </div>
+              }
+            </div>
+          }
+
+        </div>
+      </div>
+
+
+      @for (resource of resources(); track resource.id) {
+        <div class="border-b border-[#e9eaeb] dark:border-[#2a2a2a]">
+          
+          <div class="flex hover:bg-[#fcfcfd] dark:hover:bg-[#0f0f0f]">
+            <!-- Resource info - sticky left -->
+            <div
+              class="sticky left-0 z-10 w-[330px] bg-white dark:bg-[#1a1a1a] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
+              <div class="flex items-center gap-3">
+                <button
+                  (click)="toggleExpand(resource.id)"
+                  class="text-[#717680] dark:text-[#a4a7ae] hover:text-[#181d27] dark:hover:text-[#f5f5f5] transition-transform duration-200"
+                  [class.rotate-90]="expandedRows().has(resource.id)">
+                  <lucide-icon [img]="ChevronRight" [size]="16"></lucide-icon>
+                </button>
+
+                <img
+                  [src]="resource.imageUrl"
+                  [alt]="resource.name"
+                  class="w-10 h-10 rounded-full object-cover">
+
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-[#181d27] dark:text-[#f5f5f5] truncate">{{ resource.name }}</div>
+                  <div class="text-xs text-[#717680] dark:text-[#a4a7ae] truncate">{{ resource.role }}</div>
+                </div>
+
+                <span
+                  class="px-2 py-1 rounded text-xs font-medium"
+                  [ngClass]="{
+                    'bg-[#ecfdf3] text-[#16b364] dark:bg-[#16b364]/20 dark:text-[#22c55e]': resource.availability === 'High',
+                    'bg-[#fef6ee] text-[#f79009] dark:bg-[#f79009]/20 dark:text-[#fb923c]': resource.availability === 'Medium',
+                    'bg-[#fef2f2] text-[#dc2626] dark:bg-[#dc2626]/20 dark:text-[#ef4444]': resource.availability === 'Low',
+                    'bg-[#f3f4f6] text-[#717680] dark:bg-[#2a2a2a] dark:text-[#a4a7ae]': resource.availability === 'None'
+                  }">
+                  {{ resource.availability }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Week allocations -->
+            @for (month of months; track month.name) {
+              <div class="flex">
+                @for (week of getWeeksArray(month.weeks); track week) {
+                  <div
+                    class="w-20 px-2 py-4 border-r border-[#e9eaeb] dark:border-[#2a2a2a] bg-white dark:bg-[#1a1a1a]">
+                    @if (resource.weeklyAllocations[week - 1]) {
+                      <div
+                        class="text-center text-sm font-medium rounded py-1"
+                        [ngClass]="{
+                          'bg-[#ecfdf3] text-[#16b364] dark:bg-[#16b364]/20 dark:text-[#22c55e]': resource.weeklyAllocations[week - 1] === 100,
+                          'bg-[#fef6ee] text-[#f79009] dark:bg-[#f79009]/20 dark:text-[#fb923c]': resource.weeklyAllocations[week - 1] > 0 && resource.weeklyAllocations[week - 1] < 100,
+                          'bg-[#fef2f2] text-[#dc2626] dark:bg-[#dc2626]/20 dark:text-[#ef4444]': resource.weeklyAllocations[week - 1] > 100
+                        }">
+                        {{ resource.weeklyAllocations[week - 1] }}%
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Expanded content -->
+          @if (expandedRows().has(resource.id)) {
+            <div class="flex bg-[#fcfcfd] dark:bg-[#0f0f0f]">
+              <div
+                class="sticky left-0 z-10 w-[330px] bg-[#fcfcfd] dark:bg-[#0f0f0f] border-r border-[#e9eaeb] dark:border-[#2a2a2a] px-6 py-4">
+                <p class="text-sm text-[#717680] dark:text-[#a4a7ae]">Project details and skills will go here...</p>
+              </div>
+
+              @for (month of months; track month.name) {
+                <div class="flex">
+                  @for (week of getWeeksArray(month.weeks); track week) {
+                    <div class="w-20 px-2 py-4 border-r border-[#e9eaeb] dark:border-[#2a2a2a]">
+                      <p class="text-xs text-[#a4a7ae] dark:text-[#717680]">Mock</p>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
