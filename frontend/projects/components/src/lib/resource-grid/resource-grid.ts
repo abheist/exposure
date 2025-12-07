@@ -21,19 +21,37 @@ export class ResourceGrid {
   ChevronRight = ChevronRight;
 
   expandedRows = signal(new Set<string>());
+
   scrollContainer = viewChild<ElementRef<HTMLDivElement>>('scrollContainer');
   monthScroll = viewChild<ElementRef<HTMLDivElement>>('monthScroll');
   weekScroll = viewChild<ElementRef<HTMLDivElement>>('weekScroll');
 
-// Add scroll sync method
+  // Add scroll sync method
+  // Add this property to track which container is currently scrolling
+  private isScrolling = false;
+
+// Update scroll sync to prevent loops
   onScroll(event: Event): void {
-    const scrollLeft = (event.target as HTMLElement).scrollLeft;
+    if (this.isScrolling) return; // Prevent infinite loop
+
+    const target = event.target as HTMLElement;
+    const scrollLeft = target.scrollLeft;
+
+    this.isScrolling = true;
 
     const monthEl = this.monthScroll()?.nativeElement;
     const weekEl = this.weekScroll()?.nativeElement;
+    const contentEl = this.scrollContainer()?.nativeElement;
 
-    if (monthEl) monthEl.scrollLeft = scrollLeft;
-    if (weekEl) weekEl.scrollLeft = scrollLeft;
+    // Update all containers except the one that triggered the event
+    if (monthEl && target !== monthEl) monthEl.scrollLeft = scrollLeft;
+    if (weekEl && target !== weekEl) weekEl.scrollLeft = scrollLeft;
+    if (contentEl && target !== contentEl) contentEl.scrollLeft = scrollLeft;
+
+    // Reset flag after scroll completes
+    requestAnimationFrame(() => {
+      this.isScrolling = false;
+    });
   }
 
   months = [
