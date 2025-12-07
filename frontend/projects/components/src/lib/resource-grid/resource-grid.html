@@ -39,13 +39,17 @@
   </div>
 
   <!-- Scrollable content area -->
-  <div class="overflow-auto">
+  <div class="overflow-auto cursor-grab active:cursor-grabbing" #scrollContainer
+       (mousedown)="onMouseDown($event)"
+       (mousemove)="onMouseMove($event)"
+       (mouseup)="onMouseUp()"
+       (mouseleave)="onMouseLeave()">
     <div class="inline-block min-w-full">
       <!-- Resource rows -->
       @for (resource of resources(); track resource.id) {
         <div class="border-b border-gray-200 dark:border-gray-800">
           <!-- Resource info row -->
-          <div class="flex hover:bg-gray-50 dark:hover:bg-gray-900/50 cursor-default" (click)="toggleExpand(resource.id)">
+          <div class="flex hover:bg-gray-50 dark:hover:bg-gray-900/50" (click)="toggleExpand(resource.id)">
             <!-- Resource info -->
             <div class="w-[330px] bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 px-6 py-4">
               <div class="flex items-center gap-3">

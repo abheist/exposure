@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, viewChild} from '@angular/core';
 import {ChevronRight, LucideAngularModule} from "lucide-angular";
 import {NgClass} from '@angular/common';
 
@@ -21,6 +21,12 @@ export class ResourceGrid {
   ChevronRight = ChevronRight;
 
   expandedRows = signal(new Set<string>());
+
+  isDragging = signal(false);
+  startX = 0;
+  scrollLeft = 0;
+
+  scrollContainer = viewChild
 
   months = [
     {name: 'JAN 2025', weeks: 4},
@@ -167,5 +173,21 @@ export class ResourceGrid {
       }
       return newSet;
     });
+  }
+
+  protected onMouseDown($event: MouseEvent) {
+    console.log("onMouseDown", $event);
+  }
+
+  protected onMouseMove($event: MouseEvent) {
+    console.log("onMouseMove", $event);
+  }
+
+  protected onMouseUp() {
+    console.log("onMouseUp");
+  }
+
+  protected onMouseLeave() {
+    console.log("onMouseLeave");
   }
 }
